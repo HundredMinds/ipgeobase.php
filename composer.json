@@ -1,0 +1,22 @@
+{
+    "name": "rossvs/ipgeobase",
+    "type": "library",
+    "description": "This script is designed for use geo-location service ipgeobase.ru",
+    "keywords": ["geo-location"],
+    "homepage": "http://ross.vc/",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Ross Vladislav",
+            "email": ""
+        }
+    ],
+    "require": {
+        "php": ">=5.2"
+    },
+    "autoload": {
+        "classmap": [
+            "ipgeobase.php"
+	]
+    }
+}
