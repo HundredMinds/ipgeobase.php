@@ -40,7 +40,7 @@ class IPGeoBase
 		rewind($this->fhandleCities);
 		while(!feof($this->fhandleCities))
 		{
-			$str = fgets($this->fhandleCities);
+			$str = iconv('windows-1251', 'UTF-8', fgets($this->fhandleCities));
 			$arRecord = explode("\t", trim($str));
 			if($arRecord[0] == $idx)
 			{
