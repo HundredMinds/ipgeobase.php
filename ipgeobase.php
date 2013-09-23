@@ -24,7 +24,7 @@ class IPGeoBase
     const DEFAULT_FILE_ENCODING = 'windows-1251';
     const DEFAULT_OUTPUT_ENCODING = 'UTF-8';
 
-    function __construct($CIDRFile = null, $CitiesFile = null, $outputEncoding = self::DEFAULT_OUTPUT_ENCODING)
+    public function __construct($CIDRFile = null, $CitiesFile = null, $outputEncoding = self::DEFAULT_OUTPUT_ENCODING)
     {
         $CIDRFile = $CIDRFile ?: dirname(__FILE__) . '/cidr_optim.txt';
         $CitiesFile = $CitiesFile ?: dirname(__FILE__) . '/cities.txt';
