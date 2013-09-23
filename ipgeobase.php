@@ -18,8 +18,8 @@
 */
 class IPGeoBase 
 {
-	private $fhandleCIDR, $fhandleCities, $fSizeCIDR, $fsizeCities;
-	function __construct($CIDRFile = false, $CitiesFile = false)
+	private $fhandleCIDR, $fhandleCities, $fSizeCIDR, $fsizeCities, $encoding;
+	function __construct($encoding = 'UTF-8', $CIDRFile = false, $CitiesFile = false)
 	{
 		if(!$CIDRFile)
 		{
@@ -29,6 +29,7 @@ class IPGeoBase
 		{
 			$CitiesFile = dirname(__FILE__) . '/cities.txt';			
 		}
+                $this->encoding = $encoding;
 		$this->fhandleCIDR = fopen($CIDRFile, 'r') or die("Cannot open $CIDRFile");
 		$this->fhandleCities = fopen($CitiesFile, 'r') or die("Cannot open $CitiesFile");
 		$this->fSizeCIDR = filesize($CIDRFile);
@@ -40,21 +41,23 @@ class IPGeoBase
 		rewind($this->fhandleCities);
 		while(!feof($this->fhandleCities))
 		{
-			$str = iconv('windows-1251', 'UTF-8', fgets($this->fhandleCities));
+                        $str = fgets($this->fhandleCities);
 			$arRecord = explode("\t", trim($str));
 			if($arRecord[0] == $idx)
 			{
-				return array(	'city' => $arRecord[1],
-								'region' => $arRecord[2],
-								'district' => $arRecord[3],
-								'lat' => $arRecord[4],
-								'lng' => $arRecord[5]);
+                                return array_map(function($elem){
+                                           return iconv('windows-1251', $this->encoding, $elem);
+                                       }, ['city' => $arRecord[1],
+                                           'region' => $arRecord[2],
+                                           'district' => $arRecord[3]] + 
+                                           ['lat' => $arRecord[4],
+                                            'lng' => $arRecord[5]]);
 			}
 		}
 		return false;
 	}
 	
-	function getRecord($ip)
+	public function getRecord($ip)
 	{
 		$ip = sprintf('%u', ip2long($ip));
 		
