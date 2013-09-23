@@ -1,14 +1,22 @@
 {
-    "name": "rossvs/ipgeobase",
+    "name": "hundredminds/ipgeobase",
+    "version" : "1.02",
     "type": "library",
-    "description": "This script is designed for use geo-location service ipgeobase.ru",
-    "keywords": ["geo-location"],
-    "homepage": "http://ross.vc/",
+    "description": "Simple library to work with ipgeobase.ru datafiles. Fork of rossvs/ipgeobase.php",
+    "keywords": ["geolocation", "geoip"],
     "license": "GPL",
     "authors": [
         {
             "name": "Ross Vladislav",
-            "email": "timurembria@gmail.com"
+            "email": "vladislav.ross@gmail.com"
+        },
+        {
+            "name": "Timur Baymbetov",
+            "email": "timur@baymbetov.com"
+        },
+        {
+            "name": "Kirill Dlussky",
+            "email": "kirill@dlussky.ru"
         }
     ],
     "require": {
@@ -17,6 +25,6 @@
     "autoload": {
         "classmap": [
             "ipgeobase.php"
-	]
+	    ]
     }
 }
