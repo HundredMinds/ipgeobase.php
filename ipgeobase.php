@@ -78,7 +78,10 @@ class IPGeoBase
         $rad = floor($this->fSizeCIDR / 2);
         $pos = $rad;
         while (fseek($this->fhandleCIDR, $pos, SEEK_SET) != -1) {
-            if (!$rad) {
+
+            if ($rad) {
+                fgets($this->fhandleCIDR);
+            } else {
                 rewind($this->fhandleCIDR);
             }
 
