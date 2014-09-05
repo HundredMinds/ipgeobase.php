@@ -1,6 +1,6 @@
 {
     "name": "hundredminds/ipgeobase",
-    "version" : "1.02",
+    "version" : "1.03",
     "type": "library",
     "description": "Simple library to work with ipgeobase.ru datafiles. Fork of rossvs/ipgeobase.php",
     "keywords": ["geolocation", "geoip"],
