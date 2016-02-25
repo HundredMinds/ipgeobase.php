@@ -52,8 +52,10 @@ class IPGeoBase
             $str = fgets($this->fhandleCities);
             $arRecord = explode("\t", trim($str));
             if ($arRecord[0] == $idx) {
-                $outputConverter = function ($string) {
-                    return iconv(self::DEFAULT_FILE_ENCODING, $this->outputEncoding, $string);
+                $inEncoding = self::DEFAULT_FILE_ENCODING;
+                $outEncoding = $this->outputEncoding;
+                $outputConverter = function ($string) use ($inEncoding, $outEncoding) {
+                    return iconv($inEncoding, $outEncoding, $string);
                 };
 
                 return array_map($outputConverter, array(
